@@ -115,8 +115,6 @@ The point is to build on a real-time 3D foundation without introducing a full ga
   <img src="assets/layout.png" alt="Scene layout image" width="100%" />
 </div>
 
-The diagram is schematic rather than to scale. Geometry and positions are defined in `make_arena()` inside `main.py`.
-
 ## 📚 Implemented Methods
 
 This project implements established computer graphics and real-time rendering techniques using Python, OpenGL 3.3, and GLSL.
