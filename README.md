@@ -25,7 +25,7 @@
 
 ## ✦ Overview
 
-**PyOpenGL FPS Arena** is a small, single-file FPS test environment and rendering sandbox. It uses an open Counter-Strike-inspired practice map instead of tight maze-like corridors. Almost everything is deliberately simple: cubes, AABB collision, a free-look camera, Lambertian lighting, and classic depth-texture shadow mapping.
+**PyOpenGL FPS DEmo** is a small, single-file FPS test environment and rendering sandbox. This project is made for practise building 3d app using Opengl API with python bindings. Almost everything is deliberately simple: cubes, AABB collision, a free-look camera, Lambertian lighting, and classic depth-texture shadow mapping.
 
 The point is to build on a real-time 3D foundation without introducing a full game engine, external 3D models, or separate GLSL files.
 
@@ -58,7 +58,7 @@ The point is to build on a real-time 3D foundation without introducing a full ga
 | :-- | :-- |
 | Rendering | OpenGL 3.3 Core, GLSL vertex and fragment shaders |
 | Geometry | Procedural cube mesh, model/view/projection matrices |
-| Level | Open arena, perimeter walls, crates, low cover, targets |
+| Level | Open arena, perimeter walls, boxes |
 | Camera | Mouse-controlled yaw/pitch, perspective projection |
 | Movement | WASD, delta time, acceleration smoothing |
 | Collision | Axis-aligned bounding boxes, substeps, X/Z sliding |
@@ -108,18 +108,30 @@ The point is to build on a real-time 3D foundation without introducing a full ga
 ## 🧱 Scene layout
 
 ```text
-             NORTH / TARGET RANGE
-┌─────────────────────────────────────┐
-│  crates      targets      pillars   │
-│   ▣ ▣       ▪  ▪  ▪      ▣          │
-│                                     │
-│  low cover   OPEN AREA   low cover  │
-│  ━━━━━━━                 ━━━━━━━     │
-│                                     │
-│  boxes           ▣          boxes   │
-│                                     │
-│                  ↑ spawn            │
-└─────────────────────────────────────┘
+             NORTH / TARGET RANGE (-Z)
+             X: -30        0         +30
+    +-----------------------------------------+
+-27 |              T  ###T###  T              |
+-24 |     ###        MM     MM          MMM   |
+-21 |     MMM        MM     MM      #####     |
+-18 |     ###  MMM   =   =   =   MMM          |
+-15 |          MMM       T       MMM          |
+-12 |           ######                        |
+ -9 |      CC          #####         CCCCC    |
+ -6 |      CC                        CCCCC    |
+ -3 |        CCC                 ####         |
+ +0 |                                         |
+ +3 |       :     :      :      :     :       |
+ +6 |       :     :      :      :     :       |
+ +9 |       :     :      :      :     :       |
++12 |       : ####:      :      :#####:       |
++15 |                                         |
++18 |    CCC             ^                    |
++21 |    CCC                          CCC     |
++24 |             ###         ###     CCC     |
++27 |                                         |
+    +-----------------------------------------+
+              SOUTH / SPAWN (+Z)
 ```
 
 The diagram is schematic rather than to scale. Geometry and positions are defined in `make_arena()` inside `main.py`.
@@ -187,7 +199,7 @@ The repository's automated checks **do not test GPU rendering**. A real window a
 
 ## 🧭 Current limitations
 
-This is a **learning/prototyping sandbox**, not a full Counter-Strike clone or general-purpose engine. It currently has no shooting mechanics, gravity/jumping, player model, audio, materials/textures, asset loader, or physics rigid-body solver. Collision uses static axis-aligned boxes; characters cannot climb onto cover.
+This is a simple project made to learn
 
 ## 📜 License
 
