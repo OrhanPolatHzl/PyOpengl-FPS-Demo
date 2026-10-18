@@ -136,26 +136,6 @@ The point is to build on a real-time 3D foundation without introducing a full ga
 
 The diagram is schematic rather than to scale. Geometry and positions are defined in `make_arena()` inside `main.py`.
 
-## ◈ Render pipeline
-
-```mermaid
-flowchart TD
-    I[GLFW input + delta time] --> P[FPS camera and AABB collision]
-    P --> L[Light-space view and projection]
-    L --> S[Shadow pass: depth framebuffer]
-    S --> R[Scene pass: diffuse lighting + 3×3 PCF]
-    R --> G[Dear ImGui overlay]
-    G --> W[GLFW swap buffers]
-    G -.Live settings.-> L
-```
-
-The scene is rendered in two passes while shadows are enabled:
-
-1. **Depth pass** — render shadow casters from the directional light into a 2048×2048 depth texture.
-2. **Camera pass** — shade the colored geometry using Lambertian diffuse lighting and compare light-space depth samples using 3×3 PCF.
-
-No ray tracing, compute shaders, PBR materials, or heavyweight engine dependency is used.
-
 ## 🗂️ Repository structure
 
 ```text
@@ -180,7 +160,7 @@ pyopengl-fps-arena/
 
 | Want to change... | Edit... |
 | :-- | :-- |
-| Arena objects and cover layout | `make_arena()` |
+| Arena objects and layout | `make_arena()` |
 | Spawn position | `FPSPlayer.__init__()` |
 | Mouse sensitivity | `MOUSE_SENSITIVITY` |
 | Shadow texture resolution | `SHADOW_SIZE` |
@@ -196,10 +176,6 @@ python -m unittest discover -s tests -v
 ```
 
 The repository's automated checks **do not test GPU rendering**. A real window and OpenGL 3.3 driver are required to validate the live visuals, ImGui integration, and shadow appearance.
-
-## 🧭 Current limitations
-
-This is a simple project made to learn
 
 ## 📜 License
 
