@@ -12,7 +12,7 @@
 ![License](https://img.shields.io/badge/License-MIT-40A778?style=flat-square)
 ![Status](https://img.shields.io/badge/Status-Prototype-F0A34C?style=flat-square)
 
-**[Features](#-features) · [Quick start](#-quick-start) · [Controls](#-controls) · [How it works](#-render-pipeline) · [License](#-license)**
+**[Features](#-features) · [Quick start](#-quick-start) · [Controls](#-controls) · [How it works](#-render-pipeline) · [License](#-license) · [Technical](#-implemented-methods)**
 
 </div>
 
@@ -135,6 +135,32 @@ The point is to build on a real-time 3D foundation without introducing a full ga
 ```
 
 The diagram is schematic rather than to scale. Geometry and positions are defined in `make_arena()` inside `main.py`.
+
+## 📚 Implemented Methods
+
+This project implements established computer graphics and real-time rendering techniques using Python, OpenGL 3.3, and GLSL.
+
+### Research-Based Implementations
+
+| Technique | Research Paper | Implementation |
+|---|---|---|
+| **Shadow Mapping** | [Lance Williams — *Casting Curved Shadows on Curved Surfaces* (1978)](https://doi.org/10.1145/965139.807402) | Real-time directional shadow mapping using a 2048×2048 depth texture |
+| **Percentage-Closer Filtering (PCF)** | [Reeves et al. — *Rendering Antialiased Shadows with Depth Maps* (1987)](https://graphics.pixar.com/library/ShadowMaps/paper.pdf) | Simplified 3×3 PCF with nine depth comparisons per fragment |
+
+### Additional Implemented Methods
+
+| Technique | Description |
+|---|---|
+| **Lambertian Diffuse Lighting** | Surface-normal-based directional lighting |
+| **AABB Collision Detection** | Axis-aligned collision detection with wall sliding |
+| **Perspective & Orthographic Projection** | Camera and directional light projection matrices |
+| **Frame-Rate-Independent Smoothing** | Exponential velocity interpolation |
+| **Exponential-Squared Fog** | Distance-based atmospheric color blending |
+| **Depth Bias & Polygon Offset** | Reduction of shadow mapping artifacts |
+
+> **Note:** These implementations are simplified adaptations of established techniques, not complete reproductions of the original research papers.
+
+For mathematical explanations, paper references, and source-code details, see **[Research & Technical Implementation](docs/research.md)**.
 
 ## 🗂️ Repository structure
 
