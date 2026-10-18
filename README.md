@@ -107,32 +107,13 @@ The point is to build on a real-time 3D foundation without introducing a full ga
 
 ## 🧱 Scene layout
 
-```text
-             NORTH / TARGET RANGE (-Z)
-             X: -30        0         +30
-    +-----------------------------------------+
--27 |              T  ###T###  T              |
--24 |     ###        MM     MM          MMM   |
--21 |     MMM        MM     MM      #####     |
--18 |     ###  MMM   =   =   =   MMM          |
--15 |          MMM       T       MMM          |
--12 |           ######                        |
- -9 |      CC          #####         CCCCC    |
- -6 |      CC                        CCCCC    |
- -3 |        CCC                 ####         |
- +0 |                                         |
- +3 |       :     :      :      :     :       |
- +6 |       :     :      :      :     :       |
- +9 |       :     :      :      :     :       |
-+12 |       : ####:      :      :#####:       |
-+15 |                                         |
-+18 |    CCC             ^                    |
-+21 |    CCC                          CCC     |
-+24 |             ###         ###     CCC     |
-+27 |                                         |
-    +-----------------------------------------+
-              SOUTH / SPAWN (+Z)
-```
+</div>
+
+---
+
+<div align="center">
+  <img src="assets/layout.png" alt="Scene layout image" width="100%" />
+</div>
 
 The diagram is schematic rather than to scale. Geometry and positions are defined in `make_arena()` inside `main.py`.
 
