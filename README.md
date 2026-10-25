@@ -25,7 +25,7 @@
 
 ## ✦ Overview
 
-**PyOpenGL FPS DEmo** is a small, single-file FPS test environment and rendering sandbox. This project is made for practise building 3d app using Opengl API with python bindings. Almost everything is deliberately simple: cubes, AABB collision, a free-look camera, Lambertian lighting, and classic depth-texture shadow mapping.
+**PyOpenGL FPS Demo** is a small, single-file FPS test environment and rendering sandbox. This project is made for practise building 3d app using Opengl API with python bindings. Almost everything is deliberately simple: cubes, AABB collision, a free-look camera, Lambertian lighting, and classic depth-texture shadow mapping.
 
 The point is to build on a real-time 3D foundation without introducing a full game engine, external 3D models, or separate GLSL files.
 
