@@ -1,4 +1,4 @@
-"""Single-file OpenGL 3.3 FPS test arena with directional shadows + Dear ImGui.
+"""OpenGL 3.3 FPS test arena with directional shadows + Dear ImGui.
 
 Requires: numpy, glfw, PyOpenGL and EITHER imgui-bundle OR imgui (pyimgui).
 Run in the currently selected Python environment: python main.py
@@ -14,9 +14,14 @@ import os
 import sys
 from dataclasses import dataclass
 
+
 # On Linux/Wayland, PyOpenGL's native-context detection can need this workaround.
+
 if os.environ.get("XDG_SESSION_TYPE") == "wayland" and not os.environ.get("PYOPENGL_PLATFORM"):
     os.environ["PYOPENGL_PLATFORM"] = "x11"
+
+
+# Import OpenGL, GLFW and NumPy. If any are missing, exit with a clear message.
 
 try:
     import glfw
@@ -52,7 +57,9 @@ except ImportError as exc:
         "modules: python -m pip install numpy glfw PyOpenGL"
     ) from exc
 
-# Prefer imgui_bundle (the user's existing installation may already provide it).
+
+# Import Dear ImGui. If missing, exit with a clear message.
+
 try:
     from imgui_bundle import imgui
     from imgui_bundle.python_backends.glfw_backend import GlfwRenderer
@@ -70,6 +77,8 @@ except ImportError:
         ) from exc
 
 
+# Default constants for window size, shadow map size, player dimensions, mouse sensitivity, and world up vector.
+
 WIDTH, HEIGHT = 1280, 720
 SHADOW_SIZE = 2048
 PLAYER_HEIGHT = 1.80
@@ -78,6 +87,8 @@ PLAYER_RADIUS = 0.35
 MOUSE_SENSITIVITY = 0.092
 WORLD_UP = np.array([0.0, 1.0, 0.0], dtype=np.float32)
 
+
+# Vertex and fragment shaders for scene rendering and depth map generation.
 
 SCENE_VS = """#version 330 core
 layout(location = 0) in vec3 aPos;
@@ -167,6 +178,8 @@ void main() { }
 """
 
 
+# Data class representing a box in the scene, with position, size, color, and shadow properties.
+
 @dataclass(frozen=True)
 class Box:
     x: float
@@ -186,10 +199,14 @@ class Box:
         return matrix
 
 
+# Utility functions for vector normalization, perspective and orthographic projection matrices, look-at view matrix, cube vertex generation, shader compilation, uniform setting, and arena creation.
+
 def normalized(vector: np.ndarray) -> np.ndarray:
     length = float(np.linalg.norm(vector))
     return (vector / length).astype(np.float32) if length > 1e-8 else vector
 
+
+# Perspective projection matrix given field of view, aspect ratio, near and far planes.
 
 def perspective(fov_degrees: float, aspect: float, near: float, far: float) -> np.ndarray:
     focus = 1.0 / math.tan(math.radians(fov_degrees) * 0.5)
@@ -201,6 +218,8 @@ def perspective(fov_degrees: float, aspect: float, near: float, far: float) -> n
     matrix[3, 2] = -1.0
     return matrix
 
+
+# Orthographic projection matrix given left, right, bottom, top, near, and far planes.
 
 def orthographic(left: float, right: float, bottom: float, top: float,
                  near: float, far: float) -> np.ndarray:
@@ -214,6 +233,8 @@ def orthographic(left: float, right: float, bottom: float, top: float,
     return matrix
 
 
+# Look-at view matrix given eye position, target position, and up vector.
+
 def look_at(eye: np.ndarray, target: np.ndarray, up: np.ndarray) -> np.ndarray:
     forward = normalized(target - eye)
     right = normalized(np.cross(forward, up))
@@ -225,6 +246,8 @@ def look_at(eye: np.ndarray, target: np.ndarray, up: np.ndarray) -> np.ndarray:
     matrix[2, 3] = float(np.dot(forward, eye))
     return matrix
 
+
+# Create cube vertices with outward-facing counter-clockwise quads and normals.
 
 def create_cube_vertices() -> np.ndarray:
     # Outward-facing CCW quads, with face normals. Two triangles per face.
@@ -242,6 +265,8 @@ def create_cube_vertices() -> np.ndarray:
             data.extend((*corners[index], *normal))
     return np.asarray(data, dtype=np.float32)
 
+
+# Compile a vertex and fragment shader into a program, raising an exception on failure.
 
 def compile_program(vertex_shader: str, fragment_shader: str) -> int:
     shaders = []
@@ -269,10 +294,14 @@ def compile_program(vertex_shader: str, fragment_shader: str) -> int:
             glDeleteShader(shader)
 
 
+# Set a 4x4 matrix uniform at the given location, transposing for column-major order.
+
 def uniform_mat(location: int, matrix: np.ndarray) -> None:
     # NumPy arrays are row-major; transpose on upload to GLSL column-major.
     glUniformMatrix4fv(location, 1, GL_TRUE, matrix)
 
+
+# Create the arena scene with floor, walls, cover, targets, and decorative stripes.
 
 def make_arena() -> list[Box]:
     boxes: list[Box] = []
@@ -333,6 +362,8 @@ def make_arena() -> list[Box]:
     return boxes
 
 
+# First-person shooter player class, handling position, velocity, orientation, movement, and collision detection.
+
 class FPSPlayer:
     def __init__(self) -> None:
         self.x, self.z = 0.0, 18.0
@@ -392,6 +423,8 @@ class FPSPlayer:
             else:
                 self.vz = 0.0
 
+
+# Main application class, handling window creation, GPU resource setup, input handling, rendering, and the main loop.
 
 class ArenaApp:
     def __init__(self) -> None:
@@ -666,6 +699,8 @@ class ArenaApp:
         finally:
             self.cleanup()
 
+
+# Give error message if the application fails to initialize.
 
 if __name__ == "__main__":
     try:
