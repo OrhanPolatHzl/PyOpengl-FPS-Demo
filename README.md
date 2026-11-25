@@ -4,8 +4,6 @@
 
 **A compact first-person graphics playground built with Python, OpenGL 3.3 and Dear ImGui.**
 
-*Walk around. Move the sun. Watch the shadows change.*
-
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![OpenGL](https://img.shields.io/badge/OpenGL-3.3-5586A4?style=flat-square)
 ![GLSL](https://img.shields.io/badge/GLSL-330-505B78?style=flat-square)
@@ -23,7 +21,7 @@
   <p><sub>Actual in-engine screenshot · OpenGL 3.3 · Directional lighting · Real-time shadow mapping · ImGui controls</sub></p>
 </div>
 
-## ✦ Overview
+## Overview
 
 **PyOpenGL FPS Demo** is a small, single-file FPS test environment and rendering sandbox. This project is made for practise building 3d app using Opengl API with python bindings. Almost everything is deliberately simple: cubes, AABB collision, a free-look camera, Lambertian lighting, and classic depth-texture shadow mapping.
 
@@ -32,27 +30,27 @@ The point is to build on a real-time 3D foundation without introducing a full ga
 <table>
   <tr>
     <td width="50%" valign="top">
-      <strong>🎮 First-person controller</strong><br/>
+      <strong> First-person controller</strong><br/>
       Mouse-look camera, WASD movement, smoothed velocity, frame-time-aware updates, and solid collisions with wall sliding.
     </td>
     <td width="50%" valign="top">
-      <strong>☀️ Directional light</strong><br/>
+      <strong> Directional light</strong><br/>
       Real-time azimuth, elevation, brightness, color, and ambient light adjustments using surface normals.
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <strong>▧ Classic shadow mapping</strong><br/>
+      <strong> Classic shadow mapping</strong><br/>
       Orthographic light camera, 2048² depth texture, depth bias, and 3×3 PCF filtering.
     </td>
     <td width="50%" valign="top">
-      <strong>⚙️ Live ImGui settings</strong><br/>
+      <strong> Live ImGui settings</strong><br/>
       Tune controller speed and lighting without restarting. Press Q to release the cursor for UI interaction.
     </td>
   </tr>
 </table>
 
-## ✨ Features
+## Features
 
 | System | Implementation |
 | :-- | :-- |
@@ -66,7 +64,7 @@ The point is to build on a real-time 3D foundation without introducing a full ga
 | Shadows | Depth framebuffer, orthographic projection, 3×3 PCF |
 | Debug UI | Dear ImGui controls, FPS and player coordinates |
 
-## 🚀 Quick start
+## Quick start
 
 **Requirements:** Python 3.10+, a graphics driver supporting **OpenGL 3.3 Core**, and an existing Python environment.
 
@@ -94,7 +92,7 @@ The point is to build on a real-time 3D foundation without introducing a full ga
 > [!NOTE]
 > The project does not create or modify a virtual environment. The install commands above use whichever Python interpreter your terminal currently points to. Use `python -m pip --version` if you need to check that interpreter before installing.
 
-## 🎮 Controls
+## Controls
 
 | Input | Action |
 | :-- | :-- |
@@ -105,7 +103,7 @@ The point is to build on a real-time 3D foundation without introducing a full ga
 
 **To adjust the settings:** press **Q**, move the free cursor over the ImGui panel, change the values, then press **Q** again to resume first-person mouse-look.
 
-## 🧱 Scene layout
+## Scene layout
 
 </div>
 
@@ -115,7 +113,7 @@ The point is to build on a real-time 3D foundation without introducing a full ga
   <img src="assets/layout.png" alt="Scene layout image" width="100%" />
 </div>
 
-## 📚 Implemented Methods
+## Implemented Methods
 
 This project implements established computer graphics and real-time rendering techniques using Python, OpenGL 3.3, and GLSL.
 
@@ -141,7 +139,7 @@ This project implements established computer graphics and real-time rendering te
 
 For mathematical explanations, paper references, and source-code details, see **[Research & Technical Implementation](docs/research.md)**.
 
-## 🗂️ Repository structure
+## Repository structure
 
 ```text
 pyopengl-fps-arena/
@@ -161,7 +159,7 @@ pyopengl-fps-arena/
     └── ci.yml                 # Syntax + unit tests
 ```
 
-## 🛠️ Customize
+## Customize
 
 | Want to change... | Edit... |
 | :-- | :-- |
@@ -172,7 +170,7 @@ pyopengl-fps-arena/
 | GLSL shading and fog | `SCENE_VS` / `SCENE_FS` |
 | GUI controls | `ArenaApp.draw_imgui()` |
 
-## ✅ Tests
+## Tests
 
 Run the simple CPU-side geometry and collision tests after the dependencies are available:
 
@@ -182,7 +180,7 @@ python -m unittest discover -s tests -v
 
 The repository's automated checks **do not test GPU rendering**. A real window and OpenGL 3.3 driver are required to validate the live visuals, ImGui integration, and shadow appearance.
 
-## 📜 License
+## License
 
 The project source is released under the **MIT License** — see [LICENSE](LICENSE).
 
@@ -192,6 +190,6 @@ Dependencies are installed separately, are **not vendored into this repository**
 
 <div align="center">
 
-<sub>Made for experimenting with Python, GLSL, rasterization and real-time graphics.</sub>
+<sub>Made for experimenting with Python, GLSL, opengl and real-time graphics.</sub>
 
 </div>
