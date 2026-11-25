@@ -10,7 +10,7 @@
 ![License](https://img.shields.io/badge/License-MIT-40A778?style=flat-square)
 ![Status](https://img.shields.io/badge/Status-Prototype-F0A34C?style=flat-square)
 
-**[Features](#-features) · [Quick start](#-quick-start) · [Controls](#-controls) · [License](#-license) · [Technical](#-implemented-methods)**
+**[Features](#features) · [Quick start](#quick-start) · [Controls](#controls) · [License](#license) · [Technical](#implemented-methods)**
 
 </div>
 
